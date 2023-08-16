@@ -28,6 +28,7 @@ const updateTask =  asyncHandler(async(req, res) => {
     const {id} = req.params
     const task = await Task.findOneAndUpdate({_id: id}, req.body,  {
         new: true,
+        runValidators: true
     })
     if(!task) throw new Error("Task not found")
     res.status(200).json({success: "Task updated", task})
